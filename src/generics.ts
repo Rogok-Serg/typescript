@@ -66,34 +66,50 @@ console.log(compare(top1, bottom));
 
 // У вас є функція merge, яка поєднує два об'єкти. Використовуйте generics, щоб вказати, що ці об'єкти можуть бути будь-якого типу.
 
-// function merge(objA, objB) {
-//   return Object.assign(objA, objB);
-// }
+function merge<T extends {}, R>(objA: T, objB: R): T & R {
+  return Object.assign(objA, objB);
+}
+const obj1: {} = {
+  firstname: "John",
+};
+const obj2: {} = {
+  lastname: "Wall-i",
+};
+
+console.log(merge(obj1, obj2));
 
 // ### Завдання 4
 
 // Використовуйте generics та інтерфейси, щоб виправити помилку в наступних класах:
+interface IComponent {
+  title: string;
+}
+class Component<T extends IComponent> {
+  constructor(public props: T) {}
+}
 
-// class Component {
-//   constructor(public props: T) {}
-// }
-
-// class Page extends Component {
-//   pageInfo() {
-//     console.log(this.props.title);
-//   }
-// }
+class Page extends Component<IComponent> {
+  pageInfo() {
+    console.log(this.props.title);
+  }
+}
 
 // ### Завдання 5
 
 // Вам потрібно реалізувати інтерфейс KeyValuePair, який описує пару ключ-значення. Використовуйте generics, щоб цей інтерфейс міг
 // працювати з будь - якими типами ключів та значень.
 
-// interface KeyValuePair {
-//   key;
-//   value;
-// }
+interface KeyValuePair<T, U> {
+  key: T;
+  value: U;
+}
 
+const value: KeyValuePair<string, number> = {
+  key: "ключ",
+  value: 23,
+};
+
+console.log("value: ", value);
 // ### Завдання 6
 
 // Ви маєте форму реєстрації користувачів. Іноді потрібно попередньо заповнити форму даними користувача для оновлення його профілю.

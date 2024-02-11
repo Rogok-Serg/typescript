@@ -34,6 +34,33 @@ function compare(top1, bottom) {
     };
 }
 console.log(compare(top1, bottom));
+// ### Завдання 3
+// У вас є функція merge, яка поєднує два об'єкти. Використовуйте generics, щоб вказати, що ці об'єкти можуть бути будь-якого типу.
+function merge(objA, objB) {
+    return Object.assign(objA, objB);
+}
+const obj1 = {
+    firstname: "John",
+};
+const obj2 = {
+    lastname: "Wall-i",
+};
+console.log(merge(obj1, obj2));
+class Component {
+    constructor(props) {
+        this.props = props;
+    }
+}
+class Page extends Component {
+    pageInfo() {
+        console.log(this.props.title);
+    }
+}
+const value = {
+    key: "ключ",
+    value: 23,
+};
+console.log("value: ", value);
 function createOrUpdateUser(user, initialValues) {
     return { ...user, ...initialValues };
 }
